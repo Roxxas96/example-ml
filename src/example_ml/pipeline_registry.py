@@ -3,30 +3,38 @@
 from kedro.pipeline import Pipeline
 
 from .pipelines.personality import (
-    data_processing as dp,
+    data_processing as pdp,
 )
 from .pipelines.personality import (
-    data_science as ds,
+    data_science as pds,
 )
 from .pipelines.personality import (
-    reporting as rp,
+    reporting as pr,
+)
+from .pipelines.starter import (
+    data_processing as sdp,
+)
+from .pipelines.starter import (
+    data_science as sds,
+)
+from .pipelines.starter import (
+    reporting as sr,
 )
 
 
 def register_pipelines() -> dict[str, Pipeline]:
-    # Individual pipelines
-    data_processing = dp.create_pipeline()
-    data_science = ds.create_pipeline()
-    reporting = rp.create_pipeline()
-
     personality = Pipeline(
-        data_processing + data_science + reporting, namespace="personality"
+        pdp.create_pipeline() + pds.create_pipeline() + pr.create_pipeline(),
+        namespace="personality",
+    )
+
+    starter = Pipeline(
+        sdp.create_pipeline() + sds.create_pipeline() + sr.create_pipeline(),
+        namespace="starter",
     )
 
     return {
-        "personality.data_processing": data_processing,
-        "personality.data_science": data_science,
-        "personality.reporting": reporting,
         "personality": personality,
-        "__default__": personality,
+        "starter": starter,
+        "__default__": personality + starter,
     }

@@ -9,3 +9,16 @@ personality.model_options:
     - Drained_after_socializing
     - Friends_circle_size
     - Post_frequency
+
+starter.model_options:
+  test_size: 0.2
+  random_state: 3
+  features:
+    - engines
+    - passenger_capacity
+    - crew
+    - d_check_complete
+    - moon_clearance_complete
+    - iata_approved
+    - company_rating
+    - review_scores_rating
