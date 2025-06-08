@@ -8,6 +8,8 @@ name = "example_ml"
 readme = "README.md"
 dynamic = ["version"]
 dependencies = [
+    "mlflow>=2.22.1",
+    "kedro-mlflow>=0.14.4",
     "ipython>=8.10",
     "jupyterlab>=3.0",
     "notebook",
