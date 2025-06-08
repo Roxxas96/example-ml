@@ -6,27 +6,26 @@ import seaborn as sn
 
 
 # This function uses plotly.express
-def compare_passenger_capacity_exp(preprocessed_shuttles: pd.DataFrame):
+def compare_personality_count_exp(preprocessed_personalities: pd.DataFrame):
     return (
-        preprocessed_shuttles.groupby(["shuttle_type"])
+        preprocessed_personalities.groupby(["Personality"])
         .mean(numeric_only=True)
         .reset_index()
     )
 
 
 # This function uses plotly.graph_objects
-def compare_passenger_capacity_go(preprocessed_shuttles: pd.DataFrame):
-
+def compare_personality_count_go(preprocessed_personalities: pd.DataFrame):
     data_frame = (
-        preprocessed_shuttles.groupby(["shuttle_type"])
+        preprocessed_personalities.groupby(["Personality"])
         .mean(numeric_only=True)
         .reset_index()
     )
     fig = go.Figure(
         [
             go.Bar(
-                x=data_frame["shuttle_type"],
-                y=data_frame["passenger_capacity"],
+                x=data_frame["Personality"],
+                y=data_frame["Count"],
             )
         ]
     )
@@ -34,7 +33,7 @@ def compare_passenger_capacity_go(preprocessed_shuttles: pd.DataFrame):
     return fig
 
 
-def create_confusion_matrix(companies: pd.DataFrame):
+def create_confusion_matrix(personalities: pd.DataFrame):
     actuals = [0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 1]
     predicted = [1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1]
     data = {"y_Actual": actuals, "y_Predicted": predicted}

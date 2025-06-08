@@ -16,7 +16,7 @@ def split_data(data: pd.DataFrame, parameters: dict) -> tuple:
         Split data.
     """
     X = data[parameters["features"]]
-    y = data["price"]
+    y = data["Personality"]
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=parameters["test_size"], random_state=parameters["random_state"]
     )
@@ -54,4 +54,4 @@ def evaluate_model(
     me = max_error(y_test, y_pred)
     logger = logging.getLogger(__name__)
     logger.info("Model has a coefficient R^2 of %.3f on test data.", score)
-    return {"r2_score": score, "mae": mae, "max_error": me}
+    return {"r2_score": float(score), "mae": float(mae), "max_error": me}
