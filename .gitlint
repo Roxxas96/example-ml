@@ -1,0 +1,2 @@
+[title-match-regex]
+regex=^(feat|test|fix|docs|refactor|chore|infra)(\([a-z-_1-9]+\))*:.+$
