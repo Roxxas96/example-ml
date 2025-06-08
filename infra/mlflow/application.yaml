@@ -1,0 +1,49 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mlflow
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: example-ml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: mlflow
+  source:
+    repoURL: registry-1.docker.io/bitnamicharts
+    targetRevision: "*.*.*"
+    chart: mlflow
+    helm:
+      values: |
+        tracking:
+          auth:
+            enabled: false
+          ingress:
+            enabled: true
+            hostname: mlflow.internal.roxxas96.net
+            ingressClassName: nginx
+            annotations:
+              cert-manager.io/cluster-issuer: internal-prod
+              nginx.ingress.kubernetes.io/whitelist-source-range: 10.244.0.0/16,192.168.0.0/24
+            tls: true
+          metrics:
+            enabled: true
+            serviceMonitor:
+              enabled: true
+  ignoreDifferences:
+    - group: "*"
+      kind: Secret
+      name: mlflow-minio
+      jsonPointers:
+        - /data/root-password
+    - group: "*"
+      kind: Secret
+      name: mlflow-postgresql
+      jsonPointers:
+        - /data/password
+        - /data/postgres-password
+    - group: "*"
+      kind: Deployment
+      name: mlflow-minio
+      jsonPointers:
+        - /spec/template/metadata/annotations/checksum~1credentials-secret

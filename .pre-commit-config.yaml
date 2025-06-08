@@ -26,3 +26,8 @@ repos:
     hooks:
       - id: ruff-check
       - id: ruff-format
+  - repo: https://github.com/mcinquin/pre-commit-kustomize-helm
+    rev: v1.0.0
+    hooks:
+      - id: kustomize
+        args: [infra]
