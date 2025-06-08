@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kserve-crd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: example-ml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kserve
+  source:
+    repoURL: ghcr.io/kserve/charts
+    targetRevision: v0.15.0
+    chart: kserve-crd

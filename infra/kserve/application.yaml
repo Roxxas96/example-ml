@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kserve
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: example-ml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kserve
+  source:
+    repoURL: ghcr.io/kserve/charts
+    targetRevision: v0.15.0
+    chart: kserve
+    helm:
+      values: |
+        kserve:
+          controller:
+            deploymentMode: RawDeployment
+            gateway:
+              domain: kserve.internal.roxxas96.net
+              ingressGateway:
+                className: nginx
