@@ -40,6 +40,8 @@ docs = [
 dev = [
     "dvc>=3.60.0",
     "dvc-s3>=3.2.0",
+    # Dependency of mlflow model serve
+    "virtualenv>=20.31.2",
     "pytest-cov~=3.0",
     "pytest-mock>=1.7.1, <2.0",
     "pytest~=7.2",
