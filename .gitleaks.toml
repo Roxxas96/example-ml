@@ -1,0 +1,6 @@
+[[allowlists]]
+id = "allow-sealed-secrets"
+description = "Allow sealed secrets"
+paths = [
+  '''.*\.sealedsecret\.yaml''',
+]
