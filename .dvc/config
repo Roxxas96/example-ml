@@ -1,0 +1,5 @@
+[core]
+    remote = ceph
+['remote "ceph"']
+    url = s3://dvc
+    endpointurl = https://s3.internal.roxxas96.net
