@@ -39,7 +39,7 @@
 # (transcoding), templating and a way to reuse arguments that are frequently repeated. See more here:
 # https://docs.kedro.org/en/stable/data/data_catalog.html
 
-personalities:
+personality.personalities:
   type: pandas.CSVDataset
   filepath: data/01_raw/personalities_dataset.csv
 
@@ -57,7 +57,7 @@ personalities:
 #   load_args:
 #     engine: openpyxl
 
-preprocessed_personalities:
+personality.preprocessed_personalities:
   type: pandas.ParquetDataset
   filepath: data/02_intermediate/preprocessed_personalities.parquet
 
@@ -73,7 +73,7 @@ preprocessed_personalities:
 #   type: pandas.ParquetDataset
 #   filepath: data/03_primary/model_input_table.parquet
 
-regressor:
+personality.regressor:
   type: kedro_mlflow.io.models.MlflowModelTrackingDataset
   flavor: mlflow.sklearn
   save_args:
@@ -99,7 +99,7 @@ regressor:
 #   filepath: data/08_reporting/shuttle_passenger_capacity_plot_go.json
 #   versioned: true
 
-dummy_confusion_matrix:
+personality.dummy_confusion_matrix:
   type: kedro_mlflow.io.artifacts.MlflowArtifactDataset
   dataset:
     type: matplotlib.MatplotlibWriter
