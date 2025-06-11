@@ -30,6 +30,10 @@ spec:
             enabled: true
             serviceMonitor:
               enabled: true
+        minio:
+          deployment:
+            updateStrategy:
+              type: Recreate
   ignoreDifferences:
     - group: "*"
       kind: Secret
@@ -47,3 +51,6 @@ spec:
       name: mlflow-minio
       jsonPointers:
         - /spec/template/metadata/annotations/checksum~1credentials-secret
+        # For a reason i don't know yet setting minio.deployment.updateStrategy.type to Recreate is useless
+        # it gets overridden to RollingUpdate. Ignores this field so it is not replaced.
+        - /spec/strategy
