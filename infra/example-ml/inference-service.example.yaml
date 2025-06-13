@@ -1,7 +1,7 @@
 apiVersion: serving.kserve.io/v1beta1
 kind: InferenceService
 metadata:
-  name: personality-regressor-830c95
+  name: personality-regressor
 spec:
   predictor:
     serviceAccountName: personality-regressor
@@ -9,4 +9,4 @@ spec:
       modelFormat:
         name: mlflow
       protocolVersion: v2
-      storageUri: s3://mlflow/1/830c954bfc6049fd99088d73e30874d8/artifacts/model
+      storageUri: s3://mlflow/<experiment_id>/<run_id>/artifacts/model
