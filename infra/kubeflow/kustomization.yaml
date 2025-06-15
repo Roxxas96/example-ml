@@ -5,5 +5,7 @@ resources:
   - ingress.yaml
   - github.com/kubeflow/pipelines/manifests/kustomize/cluster-scoped-resources?ref=2.5.0
   - github.com/kubeflow/pipelines/manifests/kustomize/env/platform-agnostic?ref=2.5.0
+  - docker-repo.sealedsecret.yaml
 patches:
   - path: namespace.patch.yaml
+  - path: service-account.patch.yaml
