@@ -18,6 +18,13 @@ spec:
         tracking:
           auth:
             enabled: false
+          resources:
+            requests:
+              cpu: "0.1"
+              memory: 1Gi
+            limits:
+              cpu: "0.750"
+              memory: 1.5Gi
           ingress:
             enabled: true
             hostname: mlflow.internal.roxxas96.net
@@ -31,6 +38,13 @@ spec:
             serviceMonitor:
               enabled: true
         minio:
+          resources:
+            requests:
+              cpu: "0.1"
+              memory: 256
+            limits:
+              cpu: "0.375"
+              memory: 384Gi
           deployment:
             updateStrategy:
               type: Recreate
