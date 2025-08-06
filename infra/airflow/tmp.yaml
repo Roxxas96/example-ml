@@ -1,0 +1,37 @@
+executor: KubernetesExecutor
+setupDBJob:
+  enabled: false
+auth:
+  existingSecret: airflow-credentials
+dags:
+  enabled: true
+  repositories:
+    - repository: git@github.com:Roxxas96/example-ml.git
+      branch: main
+      name: example-ml
+      path: airflow_dags
+  existingSshKeySecret: airflow-example-ml-repo
+  existingSshKeySecretKey: private-key
+web:
+  baseUrl: https://airflow.internal.roxxas96.net
+ingress:
+  enabled: true
+  hostname: airflow.internal.roxxas96.net
+  ingressClassName: nginx
+  annotations:
+    cert-manager.io/cluster-issuer: internal-prod
+    nginx.ingress.kubernetes.io/whitelist-source-range: 10.244.0.0/16,192.168.0.0/24
+  tls: true
+rbac:
+  create: true
+metrics:
+  enabled: true
+  serviceMonitor:
+    enabled: true
+scheduler:
+  automountServiceAccountToken: true
+postgresql:
+  auth:
+    existingSecret: airflow-postgresql-credentials
+redis:
+  enabled: false
