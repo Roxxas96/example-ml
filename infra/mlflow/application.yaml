@@ -45,10 +45,10 @@ spec:
           resources:
             requests:
               cpu: "0.1"
-              memory: 256
+              memory: 256Mi
             limits:
               cpu: "0.375"
-              memory: 384Gi
+              memory: 384Mi
   ignoreDifferences:
     - group: "*"
       kind: Secret
