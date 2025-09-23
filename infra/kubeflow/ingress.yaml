@@ -6,7 +6,7 @@ metadata:
   labels:
     name: ml-pipeline-ui
   annotations:
-    cert-manager.io/cluster-issuer: internal-prod
+    cert-manager.io/cluster-issuer: dns-prod
     nginx.ingress.kubernetes.io/whitelist-source-range: 10.244.0.0/16,192.168.0.0/24
 spec:
   ingressClassName: nginx
