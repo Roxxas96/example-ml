@@ -45,7 +45,12 @@ spec:
           enabled: true
           serviceMonitor:
             enabled: true
+        dagProcessor:
+          resourcesPreset: medium
+        triggerer:
+          resourcesPreset: medium
         scheduler:
+          resourcesPreset: medium
           automountServiceAccountToken: true
         postgresql:
           auth:
